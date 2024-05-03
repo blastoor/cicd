@@ -25,5 +25,5 @@ runs:
 
     - name: Start new service
       working-directory: python-greetings
-      run: pm2 start app.py --name greetings-app-${{ inputs.environment }} -- --port ${{ inputs.port }}
+      run: pm2 start app.py --name greetings-app-${{ inputs.environment }} --interpreter python3 -- --port ${{ inputs.port }}
       shell: cmd
