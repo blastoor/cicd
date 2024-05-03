@@ -1,1 +1,25 @@
+name: Run tests on the chosen environment
 
+inputs:
+  environment:
+    description: 'Testing environment'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Clone the testing framework
+      uses: actions/checkout@v3.5.2
+      with:
+        repository: mtararujs/course-js-api-framework
+        path: course-js-api-framework
+        
+    - name: Install JS dependencies
+      working-directory: course-js-api-framework
+      run: npm install
+      shell: cmd
+
+    - name: Run testing framework
+      working-directory: course-js-api-framework
+      run: npm run greetings greetings_${{ inputs.environment }}
+      shell: cmd
