@@ -1,36 +1,81 @@
-# This is a basic workflow to help you get started with Actions
+name: Python Greetings Workflow
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+  install-pip-deps:
+    runs-on: self-hosted
+    name: Install required Python dependencies
+    
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3.5.2
+      
+  deploy-to-dev:
+    runs-on: self-hosted
+    needs: [install-pip-deps]
+    name: Deploy service to development environment
+    
+    steps:
+      - uses: actions/checkout@v3.5.2
+  
+  tests-on-dev:
+    runs-on: self-hosted
+    needs: [deploy-to-dev]
+    name: Test service in development environment
+    
+    steps:
+      - uses: actions/checkout@v3.5.2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+  deploy-to-staging:
+    runs-on: self-hosted
+    needs: [tests-on-dev]
+    name: Deploy service to staging environment
+    
+    steps:
+      - uses: actions/checkout@v3.5.2
+  
+  tests-on-staging:
+    runs-on: self-hosted
+    needs: [deploy-to-staging]
+    name: Test service in staging environment
+    
+    steps:
+      - uses: actions/checkout@v3.5.2
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+  deploy-to-preprod:
+    runs-on: self-hosted
+    needs: [tests-on-staging]
+    name: Deploy service to preproduction environment
+    
+    steps:
+      - uses: actions/checkout@v3.5.2
+  
+  tests-on-preprod:
+    runs-on: self-hosted
+    needs: [deploy-to-preprod]
+    name: Test service in preproduction environment
+    
+    steps:
+      - uses: actions/checkout@v3.5.2
+
+  deploy-to-prod:
+    runs-on: self-hosted
+    needs: [tests-on-preprod]
+    name: Deploy service to production
+    
+    steps:
+      - uses: actions/checkout@v3.5.2
+  
+  tests-on-prod:
+    runs-on: self-hosted
+    needs: [deploy-to-prod]
+    name: Test service in production
+    
+    steps:
+      - uses: actions/checkout@v3.5.2
