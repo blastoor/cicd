@@ -33,6 +33,11 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3.5.2
+      - name: Deploy dev to port 7001
+        uses: ./.github/actions/deploy
+        with: 
+          port: 7001
+          environment: 'dev'
   
   tests-on-dev:
     runs-on: self-hosted
@@ -41,6 +46,10 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3.5.2
+      - name: Test development environment
+        uses: ./.github/actions/test
+        with: 
+          environment: 'dev'
 
   deploy-to-staging:
     runs-on: self-hosted
@@ -49,6 +58,11 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3.5.2
+      - name: Deploy staging to port 7002
+        uses: ./.github/actions/deploy
+        with: 
+          port: 7002
+          environment: 'stg'
   
   tests-on-staging:
     runs-on: self-hosted
@@ -57,6 +71,10 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3.5.2
+      - name: Test staging environment
+        uses: ./.github/actions/test
+        with: 
+          environment: 'stg'
 
   deploy-to-preprod:
     runs-on: self-hosted
@@ -65,6 +83,11 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3.5.2
+      - name: Deploy preprod to port 7003
+        uses: ./.github/actions/deploy
+        with: 
+          port: 7003
+          environment: 'preprod'
   
   tests-on-preprod:
     runs-on: self-hosted
@@ -73,6 +96,10 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3.5.2
+      - name: Test preproduction environment
+        uses: ./.github/actions/test
+        with: 
+          environment: 'preprod'
 
   deploy-to-prod:
     runs-on: self-hosted
@@ -81,6 +108,11 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3.5.2
+      - name: Deploy prod to port 7004
+        uses: ./.github/actions/deploy
+        with: 
+          port: 7004
+          environment: 'prod'
   
   tests-on-prod:
     runs-on: self-hosted
@@ -89,3 +121,7 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3.5.2
+      - name: Test production environment
+        uses: ./.github/actions/test
+        with: 
+          environment: 'prod'
