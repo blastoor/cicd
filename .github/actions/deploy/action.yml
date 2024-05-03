@@ -18,6 +18,8 @@ runs:
         repository: blastoor/python-greetings
         path: python-greetings
         
+    - uses: actions/setup-node@v4
+        
     - name: Stop current service
       working-directory: python-greetings
       run: pm2 delete greetings-app-${{ inputs.environment }} "&" set "errorlevel=0"
