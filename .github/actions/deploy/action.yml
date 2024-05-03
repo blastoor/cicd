@@ -3,6 +3,7 @@ name: Deploy to chosen environment
 inputs:
   environment:
     description: 'Deployment environment'
+    default: 7000
   port:
     description: 'Port the application will use'
 
