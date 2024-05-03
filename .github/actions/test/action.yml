@@ -1,4 +1,4 @@
-lname: Run tests on the chosen environment
+name: Run tests on the chosen environment
 
 inputs:
   environment:
