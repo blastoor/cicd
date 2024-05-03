@@ -33,7 +33,9 @@ jobs:
     name: Deploy service to development environment
     
     steps:
-      #- uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.2
+        with:
+          clean: false
       - name: Deploy dev to port 7001
         uses: ./.github/actions/deploy
         with: 
@@ -46,7 +48,9 @@ jobs:
     name: Test service in development environment
     
     steps:
-      #- uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.2
+        with:
+          clean: false
       - name: Test development environment
         uses: ./.github/actions/test
         with: 
@@ -58,7 +62,9 @@ jobs:
     name: Deploy service to staging environment
     
     steps:
-      #- uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.2
+        with:
+          clean: false
       - name: Deploy staging to port 7002
         uses: ./.github/actions/deploy
         with: 
@@ -71,7 +77,9 @@ jobs:
     name: Test service in staging environment
     
     steps:
-      #- uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.2
+        with:
+          clean: false
       - name: Test staging environment
         uses: ./.github/actions/test
         with: 
@@ -83,7 +91,9 @@ jobs:
     name: Deploy service to preproduction environment
     
     steps:
-      #- uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.2
+        with:
+          clean: false
       - name: Deploy preprod to port 7003
         uses: ./.github/actions/deploy
         with: 
@@ -96,7 +106,9 @@ jobs:
     name: Test service in preproduction environment
     
     steps:
-      #- uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.2
+        with:
+          clean: false
       - name: Test preproduction environment
         uses: ./.github/actions/test
         with: 
@@ -108,7 +120,9 @@ jobs:
     name: Deploy service to production
     
     steps:
-      #- uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.2
+        with:
+          clean: false
       - name: Deploy prod to port 7004
         uses: ./.github/actions/deploy
         with: 
@@ -121,7 +135,9 @@ jobs:
     name: Test service in production
     
     steps:
-      #- uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.2
+        with:
+          clean: false
       - name: Test production environment
         uses: ./.github/actions/test
         with: 
