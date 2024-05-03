@@ -12,15 +12,15 @@ runs:
       uses: actions/checkout@v3.5.2
       with:
         repository: "mtararujs/course-js-api-framework"
-        path: course-js-api-framework
+        path: "course-js-api-framework-${{ inputs.environment }}"
         ref: "7032ee862638108d4b9ad455e25e92a846c01ece"
         
     - name: Install JS dependencies
-      working-directory: course-js-api-framework
-      run: npm install
+      working-directory: "course-js-api-framework-${{ inputs.environment }}"
+      run: "npm install"
       shell: cmd
 
     - name: Run testing framework
-      working-directory: course-js-api-framework
-      run: npm run greetings greetings_${{ inputs.environment }}
+      working-directory: "course-js-api-framework-${{ inputs.environment }}"
+      run: "npm run greetings greetings_${{ inputs.environment }}"
       shell: cmd
