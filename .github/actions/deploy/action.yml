@@ -21,9 +21,9 @@ runs:
     - name: Stop current service
       working-directory: python-greetings
       run: pm2 delete greetings-app-${{ inputs.environment }} & set "errorlevel=0"
-      shell: bash
+      shell: powershell
 
     - name: Start new service
       working-directory: python-greetings
       run: pm2 start app.py --name greetings-app-${{ inputs.environment }} -- --port ${{ inputs.port }}
-      shell: bash
+      shell: powershell
