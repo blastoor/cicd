@@ -11,6 +11,7 @@ runs:
     - name: Clone the testing framework
       uses: actions/checkout@v3.5.2
       with:
+        clean: false
         repository: "mtararujs/course-js-api-framework"
         path: "course-js-api-framework"
         ref: "7032ee862638108d4b9ad455e25e92a846c01ece"
