@@ -14,7 +14,17 @@ jobs:
     name: Install required Python dependencies
     
     steps:
-      - uses: actions/checkout@v3.5.2
+      - name: Checkout pipeline
+        uses: actions/checkout@v3.5.2
+        
+      - name: Clone the app
+        uses: actions/checkout@v3.5.2
+        with:
+          # using my repository with port fix
+          repository: blastoor/python-greetings
+          path: python-greetings
+          
+      - uses: ./.github/actions/install
       
   deploy-to-dev:
     runs-on: self-hosted
