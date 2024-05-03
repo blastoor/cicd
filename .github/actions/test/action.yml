@@ -17,9 +17,9 @@ runs:
     - name: Install JS dependencies
       working-directory: course-js-api-framework
       run: npm install
-      shell: bash
+      shell: powershell
 
     - name: Run testing framework
       working-directory: course-js-api-framework
       run: npm run greetings greetings_${{ inputs.environment }}
-      shell: bash
+      shell: powershell
