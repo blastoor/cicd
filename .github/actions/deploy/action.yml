@@ -19,6 +19,7 @@ runs:
         path: python-greetings
         
     - uses: actions/setup-node@v4
+    - run: npm install pm2 -g
         
     - name: Stop current service
       working-directory: python-greetings
