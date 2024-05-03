@@ -15,12 +15,8 @@ runs:
       uses: actions/checkout@v3.5.2
       with:
         # using my repository with port fix
-        # repository: blastoor/python-greetings
-        repository: 'mtararujs/python-greetings'
+        repository: blastoor/python-greetings
         path: python-greetings
-        ref: 4e911440a9886c7c26ccbb4eb55f0bc2a5067b51
-        fetch-depth: 0
-        #path: python-greetings
         
     - uses: actions/setup-node@v4
     - run: npm install pm2 -g
