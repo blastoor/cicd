@@ -20,6 +20,7 @@ runs:
         
     - uses: actions/setup-node@v4
     - run: npm install pm2 -g
+      shell: powershell
         
     - name: Stop current service
       working-directory: python-greetings
