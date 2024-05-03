@@ -14,9 +14,6 @@ jobs:
     name: Install required Python dependencies
     
     steps:
-      - name: Delete all existing processes
-        run: "pm2 delete all & set \"errorlevel=0\""
-        shell: cmd 
       - name: Checkout pipeline
         uses: actions/checkout@v3.5.2
         
