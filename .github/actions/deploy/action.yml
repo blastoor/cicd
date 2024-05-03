@@ -15,8 +15,9 @@ runs:
       uses: actions/checkout@v3.5.2
       with:
         # using my repository with port fix
-        repository: blastoor/python-greetings
+        repository: "mtararujs/python-greetings"
         path: python-greetings
+        ref: "4e911440a9886c7c26ccbb4eb55f0bc2a5067b51"
 
     - name: Stop current service
       working-directory: python-greetings
