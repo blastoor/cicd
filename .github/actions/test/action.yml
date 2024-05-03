@@ -11,7 +11,8 @@ runs:
     - name: Clone the testing framework
       uses: actions/checkout@v3.5.2
       with:
-        repository: mtararujs/course-js-api-framework
+        # using my own repository with added preprod environment for 4 ports
+        repository: blastoor/course-js-api-framework
         path: course-js-api-framework
         
     - name: Install JS dependencies
