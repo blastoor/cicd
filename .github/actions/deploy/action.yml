@@ -1,1 +1,29 @@
+name: Deploy to chosen environment
 
+inputs:
+  environment:
+    description: 'Deployment environment'
+    required: true
+  port:
+    description: 'Port the application will use'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Clone the app
+      uses: actions/checkout@v3.5.2
+      with:
+        # using my repository with port fix
+        repository: blastoor/python-greetings
+        path: python-greetings
+        
+    - name: Stop current service
+      working-directory: python-greetings
+      run: pm2 delete greetings-app-${{ inputs.environment }} & set "errorlevel=0"
+      shell: cmd
+
+    - name: Start new service
+      working-directory: python-greetings
+      run: pm2 start app.py --name greetings-app-${{ inputs.environment }} -- --port ${{ inputs.port }}
+      shell: cmd
