@@ -1,8 +1,9 @@
-name: Run tests on the chosen environment
+lname: Run tests on the chosen environment
 
 inputs:
   environment:
     description: 'Testing environment'
+    default: 'dev'
 
 runs:
   using: "composite"
