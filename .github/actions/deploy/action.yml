@@ -3,10 +3,8 @@ name: Deploy to chosen environment
 inputs:
   environment:
     description: 'Deployment environment'
-    required: true
   port:
     description: 'Port the application will use'
-    required: true
 
 runs:
   using: "composite"
@@ -16,15 +14,15 @@ runs:
       with:
         # using my repository with port fix
         repository: "mtararujs/python-greetings"
-        path: python-greetings
+        path: "python-greetings-${{ inputs.environment }}"
         ref: "4e911440a9886c7c26ccbb4eb55f0bc2a5067b51"
 
     - name: Stop current service
-      working-directory: python-greetings
-      run: pm2 delete greetings-app-${{ inputs.environment }} & set "errorlevel=0"
+      working-directory: "python-greetings-${{ inputs.environment }}"
+      run: "pm2 delete greetings-app-${{ inputs.environment }} & set \"errorlevel=0\""
       shell: cmd
 
     - name: Start new service
-      working-directory: python-greetings
-      run: pm2 start app.py --name greetings-app-${{ inputs.environment }} -- --port=${{ inputs.port }}
+      working-directory: "python-greetings-${{ inputs.environment }}"
+      run: "pm2 start app.py --name greetings-app-${{ inputs.environment }} -- --port=${{ inputs.port }}"
       shell: cmd
