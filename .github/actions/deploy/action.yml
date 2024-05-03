@@ -20,14 +20,14 @@ runs:
         
     - uses: actions/setup-node@v4
     - run: npm install pm2 -g
-      shell: powershell
+      shell: cmd
         
     - name: Stop current service
       working-directory: python-greetings
-      run: pm2 delete greetings-app-${{ inputs.environment }} "&" set "errorlevel=0"
-      shell: powershell
+      run: pm2 delete greetings-app-${{ inputs.environment }} & set "errorlevel=0"
+      shell: cmd
 
     - name: Start new service
       working-directory: python-greetings
       run: pm2 start app.py --name greetings-app-${{ inputs.environment }} -- --port ${{ inputs.port }}
-      shell: powershell
+      shell: cmd
