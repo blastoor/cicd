@@ -14,19 +14,10 @@ runs:
     - name: Clone the app
       uses: actions/checkout@v3.5.2
       with:
-        repository: 'mtararujs/python-greetings'
-        path: 'python-greetings'
-        ref: 4e911440a9886c7c26ccbb4eb55f0bc2a5067b51
-        fetch-depth: 0
-      #with:
         # using my repository with port fix
-        #repository: blastoor/python-greetings
-        #path: python-greetings
+        repository: blastoor/python-greetings
+        path: python-greetings
 
-    - uses: actions/setup-node@v4
-    - run: npm install pm2 -g
-      shell: cmd
-        
     - name: Stop current service
       working-directory: python-greetings
       run: pm2 delete greetings-app-${{ inputs.environment }} & set "errorlevel=0"
@@ -34,5 +25,5 @@ runs:
 
     - name: Start new service
       working-directory: python-greetings
-      run: pm2 start app.py --name greetings-app-${{ inputs.environment }} --interpreter python3 -- --port ${{ inputs.port }}
+      run: pm2 start app.py --name greetings-app-${{ inputs.environment }} -- --port ${{ inputs.port }}
       shell: cmd
